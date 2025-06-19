@@ -6,7 +6,8 @@ process COMBINE_REPORTS{
     publishDir "${params.outdir}/tools_summary", mode: 'copy', pattern: "*.tsv"
 
     input:
-    tuple val(meta), path(quast_report, stageAs: 'quast.tsv'), path(species_report, stageAs: 'species.tsv'), path(contamination_report, stageAs: 'contamination.tsv'), path(depth_report, stageAs: 'depth.tsv'),  path(sylph_report, stageAs: 'sylph.tsv'), path(ariba_report, stageAs: 'ariba.tsv')
+    tuple val(meta), path(quast_report, stageAs: 'quast.tsv'), path(species_report, stageAs: 'species.tsv'), path(contamination_report, stageAs: 'contamination.tsv'), path(depth_report, stageAs: 'depth.tsv'),  path(sylph_report, stageAs: 'sylph.tsv')
+    //, path(ariba_report, stageAs: 'ariba.tsv')
      
 
     output:
@@ -21,7 +22,7 @@ process COMBINE_REPORTS{
     cut -f2- contamination.tsv > contamination_2.tsv
     cut -f2- depth.tsv > depth_2.tsv 
     cut -f2- sylph.tsv > sylph_2.tsv 
-    cut -f2- ariba.tsv > ariba_2.tsv
+    #cut -f2- ariba.tsv > ariba_2.tsv
 
     head -1 quast_2.tsv | awk 'BEGIN {FS="\t"; OFS="\t"} {for (i=1; i<=NF; i++) \$i = "quast."\$i} 1' > quast_3.tsv
     tail -1 quast_2.tsv >> quast_3.tsv
@@ -38,14 +39,14 @@ process COMBINE_REPORTS{
     head -1 sylph_2.tsv | awk 'BEGIN {FS="\t"; OFS="\t"} {for (i=1; i<=NF; i++) \$i = "sylph."\$i} 1' > sylph_3.tsv
     tail -1 sylph_2.tsv >> sylph_3.tsv
 
-    head -1 ariba_2.tsv | awk 'BEGIN {FS="\t"; OFS="\t"} {for (i=1; i<=NF; i++) \$i = "ariba."\$i} 1' > ariba_3.tsv
-    tail -1 ariba_2.tsv >> ariba_3.tsv
+    #head -1 ariba_2.tsv | awk 'BEGIN {FS="\t"; OFS="\t"} {for (i=1; i<=NF; i++) \$i = "ariba."\$i} 1' > ariba_3.tsv
+    #tail -1 ariba_2.tsv >> ariba_3.tsv
 
     echo "sample_id\tassembly_type\n"${meta.sample_id}"\t"${meta.type} > info.tsv
 
     paste info.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth_3.tsv sylph_3.tsv ariba_3.tsv > ${report}
 
-    rm quast.tsv species.tsv contamination.tsv quast_2.tsv species_2.tsv ariba_2.tsv sylph_2.tsv contamination_2.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth.tsv depth_2.tsv depth_3.tsv sylph_3.tsv ariba_3.tsv info.tsv
+    rm quast.tsv species.tsv contamination.tsv quast_2.tsv species_2.tsv ariba_2.tsv sylph_2.tsv contamination_2.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth.tsv depth_2.tsv depth_3.tsv sylph_3.tsv info.tsv
     """   
 }
 

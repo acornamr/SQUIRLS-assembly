@@ -58,7 +58,7 @@ Define where the pipeline should find input data and save output data.
 To run the pipeline with the `samplesheet` and `output` path, use:
 
 ```bash
-nextflow run main.nf --samplesheet /path/to/samplesheet.csv --output /path/to/output
+nextflow run main.nf --samplesheet /path/to/samplesheet.csv --outdir /path/to/output
 ```
 
 &nbsp;

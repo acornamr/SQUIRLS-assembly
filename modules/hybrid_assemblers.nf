@@ -1,7 +1,8 @@
 process UNICYCLER{
     tag { meta.sample_id }
     label 'unicycler_container'
-    label 'process_high'
+    // label 'process_high'
+    label 'process_medium'
 
     publishDir "${params.outdir}/assemblies", mode: 'copy', pattern: '*.hybrid.fasta'
 
@@ -19,6 +20,7 @@ process UNICYCLER{
     fasta="${meta.sample_id}.hybrid.fasta"
 
     """
+    #Unicycler assembly
     unicycler --threads $task.cpus -1 $read_one -2 $read_two -l $LR -o unicycler_out
     mv unicycler_out/assembly.fasta $fasta
     """

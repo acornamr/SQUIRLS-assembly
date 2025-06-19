@@ -13,7 +13,7 @@ include { SPECCHECK                      } from '../modules/speccheck'
 include { SPECCHECK_SUMMARY              } from '../modules/speccheck'
 include { CONFINDR_FASTQS                } from '../modules/contamination'
 include { SYLPH_FASTQS                   } from '../modules/contamination'
-include { ARIBA_CONTAM                   } from '../modules/ariba'
+//include { ARIBA_CONTAM                   } from '../modules/ariba'
 
 
 
@@ -53,7 +53,7 @@ workflow SR_ASSEMBLY{
     //speciate with speciator
     SPECIATION(ASSEMBLY_SHOVILL.out)
     SPECIATION.out.species_name.map{ file -> file[1].text.trim() } .set { species }
-    ARIBA_CONTAM(processed_short_reads, species)
+    //ARIBA_CONTAM(processed_short_reads, species)
     //contamination check checkm
     CONTAMINATION_CHECKM(ASSEMBLY_SHOVILL.out)
 
@@ -69,7 +69,7 @@ workflow SR_ASSEMBLY{
         .join(CONTAMINATION_CHECKM.out, failOnDuplicate: true)
         .join(ASSEMBLY_DEPTH.out, failOnDuplicate: true)
         .join(SYLPH_FASTQS.out, failOnDuplicate: true)
-        .join(ARIBA_CONTAM.out.report, failOnDuplicate: true)
+        //.join(ARIBA_CONTAM.out.report, failOnDuplicate: true)
 
     //combine all reports
     COMBINE_REPORTS(combined_reports)
@@ -81,7 +81,7 @@ workflow SR_ASSEMBLY{
         .join(CONTAMINATION_CHECKM.out, failOnDuplicate: true)
         .join(ASSEMBLY_DEPTH.out, failOnDuplicate: true)
         .join(SYLPH_FASTQS.out, failOnDuplicate: true)
-        .join(ARIBA_CONTAM.out.details, failOnDuplicate: true)    
+        //.join(ARIBA_CONTAM.out.details, failOnDuplicate: true)    
 
     //combined_reports_speccheck.veiw()    
     //run speccheck
