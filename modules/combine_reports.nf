@@ -44,9 +44,9 @@ process COMBINE_REPORTS{
 
     echo "sample_id\tassembly_type\n"${meta.sample_id}"\t"${meta.type} > info.tsv
 
-    paste info.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth_3.tsv sylph_3.tsv ariba_3.tsv > ${report}
+    paste info.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth_3.tsv sylph_3.tsv > ${report}
 
-    rm quast.tsv species.tsv contamination.tsv quast_2.tsv species_2.tsv ariba_2.tsv sylph_2.tsv contamination_2.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth.tsv depth_2.tsv depth_3.tsv sylph_3.tsv info.tsv
+    rm quast.tsv species.tsv contamination.tsv quast_2.tsv species_2.tsv  sylph_2.tsv contamination_2.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth.tsv depth_2.tsv depth_3.tsv sylph_3.tsv info.tsv
     """   
 }
 
@@ -95,4 +95,3 @@ process COMBINE_REPORTS_LR{
     rm quast.tsv species.tsv contamination.tsv quast_2.tsv species_2.tsv contamination_2.tsv quast_3.tsv species_3.tsv contamination_3.tsv depth.tsv depth_2.tsv depth_3.tsv info.tsv sylph_3.tsv sylph_2.tsv
     """   
 }
-
