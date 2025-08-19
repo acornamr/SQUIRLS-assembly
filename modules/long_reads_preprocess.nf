@@ -1,4 +1,5 @@
 process CALCULATE_GENOME_SIZE_LR {
+    errorStrategy 'ignore'
     tag { meta.sample_id }    
     label 'process_medium'
     label 'lrge_container'
@@ -11,7 +12,7 @@ process CALCULATE_GENOME_SIZE_LR {
 
     script:
     genome_size="${meta.sample_id}_genome_size.txt"
-    
+    //###count=\$(zcat $long_reads | grep -c "^@")
     """
     count=\$(zcat $long_reads | grep -c "^@")
     if [ \$count -lt 5000 ]; then

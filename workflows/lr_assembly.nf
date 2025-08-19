@@ -30,7 +30,7 @@ workflow LR_ASSEMBLY{
 
     //do nanoplot of the long reads
     NANOPLOT(read_with_genome_size)
-
+    
     //trim adapters with porechop
     PORECHOP(read_with_genome_size)
     
@@ -41,7 +41,8 @@ workflow LR_ASSEMBLY{
     // CONFINDR_FASTQS(preprocessed_long_reads, "Nanopore", SYLPH_FASTQS.out)
 
     //do long read assembly with dragonflye
-    ASSEMBLY_DRAGONFLYE(preprocessed_long_reads, params.medaka_model)
+    //ASSEMBLY_DRAGONFLYE(preprocessed_long_reads, params.medaka_model)
+    ASSEMBLY_DRAGONFLYE(read_with_genome_size,params.medaka_model)
 
     //assess assembly using quast
     QUAST(ASSEMBLY_DRAGONFLYE.out)

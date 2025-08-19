@@ -1,6 +1,7 @@
 process ASSEMBLY_DRAGONFLYE{
+    errorStrategy 'ignore'
     tag { meta.sample_id }
-    label 'process_high'
+    label 'process_medium'
     label 'dragonflye_container'
     
     publishDir "${params.outdir}/assemblies", mode: 'copy', pattern: '*.long.fasta'
@@ -18,7 +19,7 @@ process ASSEMBLY_DRAGONFLYE{
     fasta="${meta.sample_id}.long.fasta"
     """
     GSIZE=\$(cat $genome_size)
-    dragonflye --gsize \$GSIZE --reads $LR --cpus $task.cpus --ram $task.memory \
+    dragonflye --nanohq --gsize \$GSIZE --reads $LR --cpus $task.cpus --ram $task.memory \
     --prefix $meta.sample_id --racon 1 --medaka 1 --model $medaka_model \
     --outdir "$meta.sample_id" --force --keepfiles --depth 150
     mv "$meta.sample_id"/"$meta.sample_id".fa $fasta

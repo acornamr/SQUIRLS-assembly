@@ -31,7 +31,7 @@
         "long_reads": {
             "errorMessage": "FastQ file for long reads cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'",
             "type": "string",
-            "pattern": "^\\S+\\.f(ast)?q\\.gz$",
+            "pattern":  "^\\S+\\.f(ast)?q\\.gz$",
             "format": "file-path",
             "exists": true
           },     
