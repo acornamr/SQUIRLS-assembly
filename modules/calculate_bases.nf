@@ -22,7 +22,7 @@ process CALCULATEBASES_SR {
 
 process CALCULATEBASES_LR {
     tag { meta.sample_id }
-    label 'process_medium'
+    label 'process_high'
     label 'bash_container'
     
     input:
