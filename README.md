@@ -14,6 +14,7 @@ The pipeline is built as parth of GHRU project funded by NIHR.
  - Angela Sofia Garcia      @as-garciav       <agarciav@agrosavia.co>
  - Christopher Ocampo       @arsp-dev         <christopher.ocampo@ritm.gov.ph>
  - Nabil-Fareed Alikhan     @happykhan        <nabil.alikhan@cgps.group>
+ - Trinh Son Tung           @tungstrinh       <tungts@oucru.org>
 
 
 ## Assemblers
