@@ -1,7 +1,6 @@
 //import modules
 include { CALCULATE_GENOME_SIZE_LR       }  from '../modules/long_reads_preprocess'
 include { NANOPLOT                       }  from '../modules/long_reads_preprocess'
-include { PORECHOP                       }  from '../modules/long_reads_preprocess'
 include { ASSEMBLY_DRAGONFLYE            }  from '../modules/long_read_assembly'
 include { QUAST                          }  from '../modules/quast'
 include { SPECIATION                     }  from '../modules/speciation' 
@@ -32,11 +31,11 @@ workflow LR_ASSEMBLY{
     NANOPLOT(read_with_genome_size)
     
     //trim adapters with porechop
-    PORECHOP(read_with_genome_size)
+    //PORECHOP(read_with_genome_size)
     
     //processed_long_read assembly channel
-    preprocessed_long_reads=PORECHOP.out.long_read_assembly
-    SYLPH_FASTQS_LR(preprocessed_long_reads)
+    //preprocessed_long_reads=PORECHOP.out.long_read_assembly
+    SYLPH_FASTQS_LR(read_with_genome_size)
 
     // CONFINDR_FASTQS(preprocessed_long_reads, "Nanopore", SYLPH_FASTQS.out)
 
@@ -55,7 +54,7 @@ workflow LR_ASSEMBLY{
     CONTAMINATION_CHECKM(ASSEMBLY_DRAGONFLYE.out)
     
     //calculate bases
-    CALCULATEBASES_LR(preprocessed_long_reads)
+    CALCULATEBASES_LR(read_with_genome_size)
 
     //calculate long read depth based on LR assembly length and LR bases
     ASSEMBLY_DEPTH(QUAST.out.assembly_length,CALCULATEBASES_LR.out, "long_reads")

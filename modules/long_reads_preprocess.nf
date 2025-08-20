@@ -46,26 +46,3 @@ process NANOPLOT {
 }
 
 
-
-process PORECHOP{
-    tag { meta.sample_id }
-    label 'process_high'    
-    label 'porechop_container'
-
-    input:
-    tuple val(meta), path(long_reads), path(genome_size)
-
-    output:
-    tuple val(meta), path(preprocessed_ont), path(genome_size), emit: long_read_assembly
-    path(preprocessed_ont), emit: long_reads
-
-    script:
-    
-    LR="${long_reads}"
-    preprocessed_ont="preprocessed-${meta.sample_id}-ont.fastq.gz"
-
-    """
-    porechop -i $LR -o $preprocessed_ont -t $task.cpus
-    """
-
-}

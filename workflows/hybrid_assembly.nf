@@ -3,7 +3,7 @@ include { TRIMMING                            } from '../modules/short_reads_pre
 include { FASTQC                              } from '../modules/short_reads_preprocess'
 include { CALCULATE_GENOME_SIZE_LR            } from '../modules/long_reads_preprocess'
 include { NANOPLOT                            } from '../modules/long_reads_preprocess'
-include { PORECHOP                            } from '../modules/long_reads_preprocess'
+//include { PORECHOP                            } from '../modules/long_reads_preprocess'
 include { UNICYCLER                           } from '../modules/hybrid_assemblers'
 include { QUAST                               } from '../modules/quast' 
 include { SPECIATION                          } from '../modules/speciation' 
@@ -49,13 +49,13 @@ workflow HY_ASSEMBLY{
     NANOPLOT(long_reads_with_genome_size)
 
     //trim adapters using porechop
-    PORECHOP(long_reads_with_genome_size)
+    //PORECHOP(long_reads_with_genome_size)
 
     //create only long reads channel
-    processed_long_reads= PORECHOP.out.long_reads
+    //processed_long_reads= PORECHOP.out.long_reads
 
     //hybrid assembly with unicycler
-    UNICYCLER(processed_short_reads, processed_long_reads)
+    UNICYCLER(processed_short_reads, long_reads_with_genome_size)
 
     //run quast for assessing assembly
     QUAST(UNICYCLER.out)
@@ -72,7 +72,7 @@ workflow HY_ASSEMBLY{
     CALCULATEBASES_SR(processed_short_reads)
 
     //calculate bases
-    CALCULATEBASES_LR(PORECHOP.out.long_read_assembly)
+    CALCULATEBASES_LR(long_reads_with_genome_size)
 
     //calculate short read depth based on assembly length
     ASSEMBLY_DEPTH_SR (QUAST.out.assembly_length, CALCULATEBASES_SR.out, "short_reads")
