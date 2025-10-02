@@ -14,7 +14,7 @@ On-site whole genome sequencing faced multiple challenges, including constraints
 
 This repository contains the hybrid assembly pipeline which is designed for assembling genomic data based on a provided samplesheet. The pipeline supports different assemblers depending on the type of sequencing reads provided. 
 
-The containerlised app and GUI can be downloaded [here](https://oucruaap-my.sharepoint.com/:f:/g/personal/tungts_oucru_org/EkI45Tv6kzJAv7lSh6udrqgBCcyk_RvQp5DZQGdK18sMpg?e=5ooOEG) and full [installation instruction](https://cgps-discovery.github.io/acorn-assembler-protocol/).
+The containerlised app and GUI can be downloaded [here](https://oucruaap-my.sharepoint.com/:f:/g/personal/tungts_oucru_org/EkI45Tv6kzJAv7lSh6udrqgBCcyk_RvQp5DZQGdK18sMpg?e=5ooOEG) and full [installation instruction](https://tungstrinh.github.io/squirls-assembler-protocol/).
 
 This work is funded by [ACORN network](https://acornamr.net/#/), a collaboration between [Oxford University Clinical Research Unit - Hanoi (OUCRU-HN)](https://www.oucru.org/location/oucru-ha-noi/) and [Centre for Genomic Pathogen Surveillance (CGPS)](https://www.pathogensurveillance.net/).
 
@@ -71,7 +71,6 @@ To run the pipeline with the `samplesheet` and `output` path, use:
 nextflow run main.nf --samplesheet /path/to/samplesheet.csv --outdir /path/to/output
 ```
 
-&nbsp;
 ## Usage
 1. Prepare the Samplesheet: Ensure your CSV samplesheet contains the necessary fields for your samples. The required format is as follows:
 
