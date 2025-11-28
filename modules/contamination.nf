@@ -5,6 +5,8 @@ process CONTAMINATION_CHECKM {
     // label 'process_high_memory'
     label 'checkm_container'
 
+    errorStrategy 'ignore'
+
     publishDir "${params.outdir}/checkm_summary", mode: 'copy', pattern: "*.tsv"
 
     input:
