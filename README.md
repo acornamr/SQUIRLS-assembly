@@ -35,7 +35,7 @@ This work is funded by [ACORN network](https://acornamr.net/#/), a collaboration
 ### Install 
 Clone the repository
 ```
-git clone   https://github.com/cgps-discovery/GHRU-assembly.git
+git clone   https://github.com/acornamr/SQUIRLS-assembly.git
 ```
 or 
 
